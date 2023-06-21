@@ -18,9 +18,10 @@ conflicts_prefer(
   dplyr::filter()
 )
 
-rm(list = ls()) # If you get weird errors about a cachekey, just restart RStudio rather than erase the environment
+rm(list = ls()) # If you get weird errors about a cachekey or otherwise (especially when running lines that worked previously), just restart RStudio rather than erase the environment.
 
-## Begin Script
+
+## Begin Example Script
 
 # ----------- LOAD AND PREP DATA ---------------------   #
 
@@ -99,3 +100,5 @@ tmap_mode('view') # this allows you to view the location in space (ie Earth). Yo
 
 tm_shape(mcp_geom) + 
   tm_polygons()
+
+## End example script
