@@ -29,7 +29,7 @@ allanimalcaptures <- read_excel("Data/AllAnimalCaptures06232023.xlsx")
 head(allanimalcaptures)
 
 all <- allanimalcaptures %>% # Disregarding secondary species in photos
-  select(-species2) %>%
+  dplyr::select(-species2) %>%
   rename(Species = species1)
 
 rm(allanimalcaptures)
@@ -54,12 +54,13 @@ for(i in 1:length(species)){
 # --------  COPY IMAGES -------------- #
 
 for(i in 1:nrow(all)){
-  year = all[i, "Folder"]
-  RelativePath = all[i, "RelativePath"]
-  picture = all[i, "File"]
-  iSpecies = all[i, "Species"]
-  to = paste0(mainstem,"\\","QAQC","\\",iSpecies,"\\")
-  file.copy(from = paste0(mainstem,"\\", year,"\\",RelativePath,"\\",picture),
+  year = all[i,]$Folder
+  RelativePath = all[i,]$RelativePath
+  picture = all[i,]$File
+  iSpecies = all[i,]$Species 
+  from = paste0(mainstem,"\\",year,"\\",RelativePath,"\\",picture)
+  to = paste0(mainstem,"\\","QAQC","\\",iSpecies,"\\",picture)
+  file.copy(from = from,
             to = to,
             overwrite = FALSE)
 }
